@@ -2,9 +2,11 @@ import numpy
 import pandas
 import matplotlib
 
-from ucimlrepo import fetch_ucirepo   #Dataset source
+df = pandas.read_csv('Genshin Characters List 7.1 .csv')
+'''columns ['character_name', 'gender', 'model_type', 'rarity', 'region', 
+            'element','weapon_type', 'constellation_name', 'birthday', 'special_dish',
+            'ascension_stat', 'date_released', 'release_version', 'tier_rating', 'primary_role']'''
 
-tic_tac_toe_endgame = fetch_ucirepo(id=101)
-df = tic_tac_toe_endgame.data.original
 
-print(df.head())
+
+#print(df.head())
