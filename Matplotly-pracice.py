@@ -30,11 +30,15 @@ CharacterCount = dfPartial['region'].value_counts()
 CharacterCount = CharacterCount.reindex(Regions)
 #reindexing to make sure the order of regions is correct
 
-plt.bar(CharacterCount.index, CharacterCount.values)  
+plt.bar(CharacterCount.index, CharacterCount.values, 
+        width = 0.5, edgecolor = 'black', 
+        color = [ 'lightblue', 'goldenrod', 'violet', 'olive', 'turquoise', 'red', '#BAE66C', 'silver', 'beige', 'orange'])
 
 plt.title('Characters per Region')
 plt.xlabel('Regions')
 plt.ylabel('Number of Characters')
+plt.axis(ymax = 25)
+plt.xticks(fontsize=10, rotation=45, ha='right', rotation_mode='anchor')
 
 
 plt.show()
