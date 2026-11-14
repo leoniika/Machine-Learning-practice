@@ -73,6 +73,29 @@ plt.xlabel('Release Version')
 plt.ylabel('Character Count')
 
 
+#Working with subplot
+
+plt.figure(figsize=(16, 5))
+
+region_counts = dfPartial['region'].value_counts()
+element_counts = dfPartial['element'].value_counts()
+weapon_counts = dfPartial['weapon_type'].value_counts()
+
+plt.subplot(1, 3, 1)
+plt.bar(region_counts.index, region_counts.values)
+plt.title('Characters per Region')
+plt.xticks(rotation=45)
+
+plt.subplot(1, 3, 2)
+plt.bar(element_counts.index, element_counts.values)
+plt.title('Characters per Element')
+
+plt.subplot(1, 3, 3)
+plt.bar(weapon_counts.index, weapon_counts.values)
+plt.title('Characters per Weapon')
+plt.xticks(rotation=45)
+
+
 
 
 
