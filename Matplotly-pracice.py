@@ -51,7 +51,22 @@ plt.pie( ElementTypes.values , labels = ElementTypes.index, autopct='%1.1f%%',
 plt.title('Characters per Element')
 
 
-plt.show()
+#مقایسه انواع سلاح‌ها
+
+WeaponTypes = dfPartial['weapon_type'].value_counts().sort_values()
+
+plt.barh(WeaponTypes.index, WeaponTypes.values)
+
+plt.title('Characters per Weapon')
+plt.xlabel('Character Count')
+plt.ylabel('Weapon')
+
+
+
+
+
+
+#plt.show()
 
 
 
