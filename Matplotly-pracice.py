@@ -62,6 +62,16 @@ plt.xlabel('Character Count')
 plt.ylabel('Weapon')
 
 
+#تعداد کاراکترهای منتشرشده در هر release_version را محاسبه و روند آن را با نمودار خطی
+
+version_counts = df.groupby('release_version').size().sort_index()
+
+plt.plot( version_counts.index, version_counts.values, marker = 'o')
+
+plt.title('Characters per Release Version')
+plt.xlabel('Release Version')
+plt.ylabel('Character Count')
+
 
 
 
