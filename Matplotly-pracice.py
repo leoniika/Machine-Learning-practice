@@ -96,10 +96,23 @@ plt.title('Characters per Weapon')
 plt.xticks(rotation=45)
 
 
+#'Element Distribution per Version'
 
+element_version = pd.crosstab(
+    df['release_version'],
+    df['element']
+)
 
+element_version.plot(kind='line', marker='o')
 
-#plt.show()
+plt.title('Element Distribution per Version')
+plt.xlabel('Release Version')
+plt.ylabel('Character Count')
+
+plt.legend(title='Element')
+plt.grid()
+
+plt.show()
 
 
 
