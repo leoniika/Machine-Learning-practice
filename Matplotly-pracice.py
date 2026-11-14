@@ -41,6 +41,16 @@ plt.axis(ymax = 25)
 plt.xticks(fontsize=10, rotation=45, ha='right', rotation_mode='anchor')
 
 
+#توزیع کاراکترها بر اساس Element
+
+ElementTypes = dfPartial['element'].value_counts()
+
+plt.pie( ElementTypes.values , labels = ElementTypes.index, autopct='%1.1f%%', 
+                colors = ['#BDF3FF', '#FF772E', '#BA7CE6', '#45C7F5', '#3C4CC9', '#BDA015', '#8DFF85'])
+
+plt.title('Characters per Element')
+
+
 plt.show()
 
 
