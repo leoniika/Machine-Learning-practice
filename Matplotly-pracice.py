@@ -19,8 +19,9 @@ df.set_index('character_name', inplace=True)
 df["region"] = df["region"].apply(extract_region)
 dfPartial = df.drop(['model_type','constellation_name', 'birthday', 'special_dish','ascension_stat', 'date_released', 'primary_role'], axis = 1 )
 
+#################################################################################
 
-#یک نمودار رسم کن که تعداد کاراکترهای هر منطقه را نشان دهد.
+#'Characters per Region'
 
 Regions = ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 
            'Natlan', 'Nod-Krai', 'Snezhnaya', "Khaenri'ah", 'Simulanka']
@@ -40,8 +41,9 @@ plt.ylabel('Number of Characters')
 plt.axis(ymax = 25)
 plt.xticks(fontsize=10, rotation=45, ha='right', rotation_mode='anchor')
 
+#################################################################################
 
-#توزیع کاراکترها بر اساس Element
+#'Characters per Element'
 
 ElementTypes = dfPartial['element'].value_counts()
 
@@ -50,8 +52,9 @@ plt.pie( ElementTypes.values , labels = ElementTypes.index, autopct='%1.1f%%',
 
 plt.title('Characters per Element')
 
+#################################################################################
 
-#مقایسه انواع سلاح‌ها
+#'Characters per Weapon'
 
 WeaponTypes = dfPartial['weapon_type'].value_counts().sort_values()
 
@@ -61,8 +64,9 @@ plt.title('Characters per Weapon')
 plt.xlabel('Character Count')
 plt.ylabel('Weapon')
 
+#################################################################################
 
-#تعداد کاراکترهای منتشرشده در هر release_version را محاسبه و روند آن را با نمودار خطی
+#'Characters per Release Version'
 
 version_counts = df.groupby('release_version').size().sort_index()
 
@@ -72,6 +76,7 @@ plt.title('Characters per Release Version')
 plt.xlabel('Release Version')
 plt.ylabel('Character Count')
 
+#################################################################################
 
 #Working with subplot
 
@@ -95,21 +100,25 @@ plt.bar(weapon_counts.index, weapon_counts.values)
 plt.title('Characters per Weapon')
 plt.xticks(rotation=45)
 
+#################################################################################
 
 #'Element Distribution per Version'
 
-element_version = pd.crosstab(
-    df['release_version'],
-    df['element']
-)
+element_version = pd.crosstab( df['release_version'], df['element'] )
 
-element_version.plot(kind='line', marker='o')
+Plot = element_version.plot(kind='line', marker='o', figsize=(16, 6))
 
 plt.title('Element Distribution per Version')
 plt.xlabel('Release Version')
 plt.ylabel('Character Count')
 
-plt.legend(title='Element')
+Plot.set_xlim(1, 7.2)
+Plot.set_ylim(0, 6)
+
+plt.xticks(np.arange(1, 7.2, 0.1))
+plt.xticks(fontsize=10, rotation=45, ha='right', rotation_mode='anchor')
+
+plt.legend( title = 'Element' )
 plt.grid()
 
 plt.show()
